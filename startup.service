@@ -1,0 +1,11 @@
+[Unit]
+Description=Autostart Aufnahme 
+After=multi-user.target 
+Requires=network-online.target
+
+[Service]
+Type=idle
+ExecStart=python3 /home/birdwatcher/Birdwatcher/Birdwatcher/process.py
+
+[Install]
+WantedBy=multi-user.target 
