@@ -36,9 +36,4 @@ class transfer():
             os.remove(pZip) # Löschen der .zip-Datei
         except Exception as e:
             logging.error(e) # Logging potentieller Fehlermeldung
-            
-            
-            
-            
-            
-
+,
