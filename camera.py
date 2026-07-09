@@ -8,6 +8,7 @@ class camera():
 
         try:
             camera = Picamera2()
+            
 
             camera.video_configuration.transform.vflip = True
             camera.video_configuration.transform.hflip = True
