@@ -1,4 +1,4 @@
-from datetime import datetime # Import Datetime-Bibliothek, für den Umgang mit Daten und Zeiten
+from datetime import datetime # Import Datetime-Bibliothek, fÃ¼r den Umgang mit Daten und Zeiten
 from folder import * # Import folder.py
 from camera import * # Import camera.py
 from transfer import * # Import transfer.py
@@ -6,22 +6,22 @@ import logging # Import Logging-Bibliothek zum Erstellen einer Logdatei
 
 class Process():
 
-    def __init__(self): # Ausführung beim Programmaufruf
+    def __init__(self): # AusfÃ¼hrung beim Programmaufruf
                                                                                                         # DD-MM-YYYY_HH-MM-SS
         time = datetime.now().strftime("%d-%m-%Y_%H-%M-%S") # Erstellung der aktuell Uhrzeit im Format "03-10-2022_20-13-23"
         year = datetime.now().strftime("%Y") # Erstellung des Jahres als Text
         month = datetime.now().strftime("%m-%Y") # Erstellung des Monates und Jahres als Text
-        path1 = '/home/birdwatcher/Desktop/Birdwatcher_Bilder' # Ordnerpfad 1 [zu ergänzen]
-        path2 = '/home/birdwatcher/Desktop/Birdwatcher_Bilder/%s' % year # Ordnerpfad 2 [zu ergänzen]
-        path3 = '/home/birdwatcher/Desktop/Birdwatcher_Bilder/%s/%s' % (year, month) # Ordnerpfad 3 [zu ergänzen]
-        pFile = path3 + '/image_' + time + '.jpg' # Dateipfad für die Aufnahme
-        filename = time + '.zip' # Dateiname für den Mail-Versand
+        path1 = '/home/birdwatcher/Desktop/Birdwatcher_Bilder' # Ordnerpfad 1 [zu ergÃ¤nzen]
+        path2 = '/home/birdwatcher/Desktop/Birdwatcher_Bilder/%s' % year # Ordnerpfad 2 [zu ergÃ¤nzen]
+        path3 = '/home/birdwatcher/Desktop/Birdwatcher_Bilder/%s/%s' % (year, month) # Ordnerpfad 3 [zu ergÃ¤nzen]
+        pFile = path3 + '/image_' + time + '.jpg' # Dateipfad fÃ¼r die Aufnahme
+        filename = time + '.zip' # Dateiname fÃ¼r den Mail-Versand
 
         pSubject = 'Vogelbeobachtung ' + time # Betreff der E-Mail
-        pFrom = 'birdwatcher@smart-mail.de' # Absenderadresse der Mail [zu ergänzen]
-        pTo = 'birdwatcher.ium@hsbi.de' # Empfaengeradresse [zu ergänzen]
-        pContent = 'Foto aus dem Nistkasten' # E-Mailtext [zu ergänzen]
-        host = 'smtp.smart-mail.de' # SMTP-Url des Mailproviders [zu ergänzen]
+        pFrom = 'birdwatcher@smart-mail.de' # Absenderadresse der Mail [zu ergÃ¤nzen]
+        pTo = 'birdwatcher.ium@hsbi.de' # Empfaengeradresse [zu ergÃ¤nzen]
+        pContent = 'Foto aus dem Nistkasten' # E-Mailtext [zu ergÃ¤nzen]
+        host = 'smtp.smart-mail.de' # SMTP-Url des Mailproviders [zu ergÃ¤nzen]
         username = 'birdwatcher@smart-mail.de' # Benutzername des Mail-Kontos
         
         send_mails= False 
@@ -34,7 +34,7 @@ class Process():
             logging.error("Passwort-Datei konnte nicht gelesen werden: " + str(e))
             password = ""
         
-        pTransfer = '/home/birdwatcher/Desktop/Birdwatcher_Bilder/transfer' # Ordnerpfad für den Transferordner
+        pTransfer = '/home/birdwatcher/Desktop/Birdwatcher_Bilder/transfer' # Ordnerpfad fÃ¼r den Transferordner
         logging.basicConfig(filename="process_log.txt", format="%(asctime)s %(message)s") # Erstellung und Konfiguration der Log-Datei
 
         #folder.delFolder('/home/pi/Desktop/Birdwatcher')
@@ -51,7 +51,7 @@ class Process():
                 transfer.sendMail(pSubject, pFrom, pTo, pContent, pTransfer, filename, host, username, password) # Versand der Datei per E-Mail in einer .zip-Datei
         else:
                 folder.transfer(pFile, pTransfer) # Kopieren der Aufnahme in den Transferordner
-                
+                folder.delFolder(pTransfer)
                 print ("nix gesendet")
                 
-Process() # Klasse instanziieren und __init__ ausführen
+Process() # Klasse instanziieren und __init__ ausfÃ¼hren
